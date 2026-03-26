@@ -1,6 +1,4 @@
-# ====================================================
-# LỚP 1: CON CHÓ
-# ====================================================
+#con chó
 class ConCho:
     def __init__(self, ten, mausac, giong, camxuc):
         self.ten = ten
@@ -20,10 +18,7 @@ class ConCho:
     def chay(self):
         print(f"{self.ten} dang chay")
 
-
-# ====================================================
-# LỚP 2: Ô TÔ
-# ====================================================
+# oto
 class Oto:
     def __init__(self, hang, kthuoc, mau, gia, tocdo):
         self.hang = hang
@@ -46,10 +41,7 @@ class Oto:
         print(f"{self.hang} bi dam")
         self.tocdo = 0
 
-
-# ====================================================
-# LỚP 3: TÀI KHOẢN NGÂN HÀNG
-# ====================================================
+#tai khoan ngan hang
 class TaiKhoan:
     def __init__(self, tentk, stk, bank, sodu):
         self.tentk = tentk

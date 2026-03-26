@@ -18,8 +18,7 @@ def main():
         if not ten:
             print("Ten khong duoc de trong. Vui long nhap lai.")
             continue
-        
-        # Kiem tra neu ten chi chua so
+
         if ten.isdigit():
             print("Ten khong duoc chua so. Vui long nhap lai.")
             continue

@@ -1,65 +1,54 @@
 class NhanVien:
-    def __init__(self, ten, luong_cb, he_so, max_luong):
-        self.__ten_nhan_vien = ten
-        self.__luong_co_ban = luong_cb
-        self.__he_so_luong = he_so
-        self.LUONG_MAX = max_luong
-
-    def get_ten_nhan_vien(self):
-        return self.__ten_nhan_vien
+    LUONG_MAX = 500000000.0
     
-    def set_ten_nhan_vien(self, ten):
-        self.__ten_nhan_vien = ten
+    def __init__(self, ten="", lcb=0, hsl=0):
+        self.ten = ten
+        self.luongcoban = lcb
+        self.hesoluong = hsl
     
-    def get_luong_co_ban(self):
-        return self.__luong_co_ban
+    # Getter
+    def getTen(self):
+        return self.ten
     
-    def set_luong_co_ban(self, luong_cb):
-        self.__luong_co_ban = luong_cb
+    def getLuongCoBan(self):
+        return self.luongcoban
     
-    def get_he_so_luong(self):
-        return self.__he_so_luong
+    def getHeSoLuong(self):
+        return self.hesoluong
     
-    def set_he_so_luong(self, he_so):
-        self.__he_so_luong = he_so
+    # Setter
+    def setTen(self, t):
+        self.ten = t
     
-    def tinh_luong(self):
-        return self.__luong_co_ban * self.__he_so_luong
+    def setLuongCoBan(self, lcb):
+        self.luongcoban = lcb
     
-    # tăng lương
-    def tang_luong(self, muc_tang):
-        # Tính nháp hệ số mới và lương mới
-        he_so_moi = self.__he_so_luong + muc_tang
-        luong_moi = self.__luong_co_ban * he_so_moi
-        
-        # Kiểm tra điều kiện vượt mức lương tối đa
-        if luong_moi > self.LUONG_MAX:
-            print(f"[THONG BAO] Khong the tang luong! Luong moi ({luong_moi}) vuot qua luong toi da cho phep ({self.LUONG_MAX}).")
+    def setHeSoLuong(self, hsl):
+        self.hesoluong = hsl
+    
+    def tinhluong(self):
+        return self.luongcoban * self.hesoluong
+    
+    def tangluong(self, delta):
+        hsmoi = self.hesoluong + delta
+        luongmoi = self.luongcoban * hsmoi
+        if luongmoi > self.LUONG_MAX:
+            print(f"Khong the tang luong! Luong moi vuot LUONG_MAX ({self.LUONG_MAX:.0f}).")
             return False
-        else:
-            self.__he_so_luong = he_so_moi
-            return True
+        self.hesoluong = hsmoi
+        return luongmoi <= self.LUONG_MAX
     
-    def in_t_tin(self):
-        print("--- Thong Tin Nhan Vien ---")
-        print(f"Ten nhan vien: {self.__ten_nhan_vien}")
-        print(f"Luong co ban : {self.__luong_co_ban}")
-        print(f"He so luong  : {self.__he_so_luong}")
-        print(f"Luong toi da : {self.LUONG_MAX}")
-        print(f"-> Luong hien tai: {self.tinh_luong()}")
-        print("---------------------------")
+    def inTTin(self):
+        print(f"Ten: {self.ten}")
+        print(f"Luong co ban: {self.luongcoban}")
+        print(f"He so luong: {self.hesoluong}")
+        print(f"Luong: {self.tinhluong()}")
 
 
 if __name__ == "__main__":
-    nv1 = NhanVien("Nguyen Cong Bien", 5000000, 2.0, 15000000)
-    nv1.in_t_tin()
-    
-    print("\nYeu cau tang he so luong them 0.5...")
-    if nv1.tang_luong(0.5):
-        print("=> Tang luong thanh cong!")
-    nv1.in_t_tin()
-    
-    print("\nYeu cau tang he so luong them 1.0...")
-    if nv1.tang_luong(1.0):
-        print("=> Tang luong thanh cong!")
-    nv1.in_t_tin()
+    nv = NhanVien("Cong Bien", 1000000, 2.5)
+    nv.inTTin()
+    print("\n=== TANG LUONG ===")
+    nv.tangluong(2.0)  # Tang 2 he so luong
+    print("\n=== THONG TIN SAU KHI TANG LUONG ===")
+    nv.inTTin()

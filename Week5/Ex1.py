@@ -1,68 +1,89 @@
-# Lớp cha (Base class)
 class HangHoa:
-    def __init__(self, ma_hang, ten_hang, nha_sx, gia):
-        self.ma_hang = ma_hang
-        self.ten_hang = ten_hang
-        self.nha_sx = nha_sx
-        self.gia = gia
+    def __init__(self, ma="", ten="", nsx="", g=0.0):
+        self.maHang = ma
+        self.tenHang = ten
+        self.nhaSX = nsx
+        self.gia = g
+    
+    def inp(self):
+        self.maHang = input("Nhap ma hang: ")
+        self.tenHang = input("Nhap ten hang: ")
+        self.nhaSX = input("Nhap nha san xuat: ")
+        self.gia = float(input("Nhap gia: "))
+    
+    def out(self):
+        print(f"Ma hang: {self.maHang}")
+        print(f"Ten hang: {self.tenHang}")
+        print(f"Nha san xuat: {self.nhaSX}")
+        print(f"Gia: {self.gia:.2f}")
 
-    def xuat_thong_tin(self):
-        print(f"Mã hàng: {self.ma_hang} | Tên hàng: {self.ten_hang} | Nhà SX: {self.nha_sx} | Giá: {self.gia:,.0f} VNĐ")
 
-
-# Lớp con: Hàng Điện Máy (kế thừa từ HangHoa)
 class HangDienMay(HangHoa):
-    def __init__(self, ma_hang, ten_hang, nha_sx, gia, tg_baohanh, dien_ap, cong_suat):
-        # Gọi hàm khởi tạo của lớp cha
-        super().__init__(ma_hang, ten_hang, nha_sx, gia)
-        self.tg_baohanh = tg_baohanh
-        self.dien_ap = dien_ap
-        self.cong_suat = cong_suat
+    def __init__(self, ma="", ten="", nsx="", g=0.0, tg=0, cs=0.0, dien=0.0):
+        super().__init__(ma, ten, nsx, g)
+        self.tgianBH = tg
+        self.congsuat = cs
+        self.dienap = dien
+    
+    def inp(self):
+        super().inp()
+        self.tgianBH = int(input("Nhap thoi gian bao hanh: "))
+        self.congsuat = float(input("Nhap cong suat: "))
+        self.dienap = float(input("Nhap dien ap: "))
+    
+    def out(self):
+        super().out()
+        print(f"Thoi gian bao hanh: {self.tgianBH} thang")
+        print(f"Cong suat: {self.congsuat} W")
+        print(f"Dien ap: {self.dienap} V")
 
-    # Ghi đè (Override) phương thức xuất thông tin
-    def xuat_thong_tin(self):
-        super().xuat_thong_tin() # In thông tin chung
-        print(f"   -> Bảo hành: {self.tg_baohanh} tháng | Điện áp: {self.dien_ap}V | Công suất: {self.cong_suat}W")
 
-
-# Lớp con: Hàng Sành Sứ (kế thừa từ HangHoa)
 class HangSanhSu(HangHoa):
-    def __init__(self, ma_hang, ten_hang, nha_sx, gia, loai_nguyenlieu):
-        super().__init__(ma_hang, ten_hang, nha_sx, gia)
-        self.loai_nguyenlieu = loai_nguyenlieu
+    def __init__(self, ma="", ten="", nsx="", g=0.0, cl=""):
+        super().__init__(ma, ten, nsx, g)
+        self.chatlieu = cl
+    
+    def inp(self):
+        super().inp()
+        self.chatlieu = input("Nhap chat lieu: ")
+    
+    def out(self):
+        super().out()
+        print(f"Chat lieu: {self.chatlieu}")
 
-    def xuat_thong_tin(self):
-        super().xuat_thong_tin()
-        print(f"   -> Loại nguyên liệu: {self.loai_nguyenlieu}")
 
-
-# Lớp con: Hàng Thực Phẩm (kế thừa từ HangHoa)
 class HangThucPham(HangHoa):
-    def __init__(self, ma_hang, ten_hang, nha_sx, gia, ngay_sx, ngay_hethan):
-        super().__init__(ma_hang, ten_hang, nha_sx, gia)
-        self.ngay_sx = ngay_sx
-        self.ngay_hethan = ngay_hethan
-
-    def xuat_thong_tin(self):
-        super().xuat_thong_tin()
-        print(f"   -> Ngày sản xuất: {self.ngay_sx} | Ngày hết hạn: {self.ngay_hethan}")
+    def __init__(self, ma="", ten="", nsx="", g=0.0, date="", nhh=""):
+        super().__init__(ma, ten, nsx, g)
+        self.ngaySX = date
+        self.ngayHH = nhh
+    
+    def inp(self):
+        super().inp()
+        self.ngaySX = input("Nhap ngay san xuat (dd/mm/yyyy): ")
+        self.ngayHH = input("Nhap ngay het han (dd/mm/yyyy): ")
+    
+    def out(self):
+        super().out()
+        print(f"Ngay san xuat: {self.ngaySX}")
+        print(f"Ngay het han: {self.ngayHH}")
 
 
 if __name__ == "__main__":
-    # 1. Tạo mỗi loại một mặt hàng cụ thể
-    dien_may = HangDienMay("DM001", "Tivi Sony 4K", "Sony", 15000000, 24, 220, 150)
-    sanh_su = HangSanhSu("SS001", "Bộ ấm trà hoa văn", "Gốm sứ Bát Tràng", 500000, "Đất sét trắng cao cấp")
-    thuc_pham = HangThucPham("TP001", "Sữa tươi tiệt trùng", "Vinamilk", 35000, "01/10/2023", "01/04/2024")
-
-    # 2. Xuất thông tin về các mặt hàng này
-    print("--- THÔNG TIN HÀNG ĐIỆN MÁY ---")
-    dien_may.xuat_thong_tin()
-    print("-" * 50)
-
-    print("--- THÔNG TIN HÀNG SÀNH SỨ ---")
-    sanh_su.xuat_thong_tin()
-    print("-" * 50)
-
-    print("--- THÔNG TIN HÀNG THỰC PHẨM ---")
-    thuc_pham.xuat_thong_tin()
-    print("-" * 50)
+    dm = HangDienMay()
+    print("Nhap thong tin hang dien may:")
+    dm.inp()
+    print("\nThong tin hang dien may:")
+    dm.out()
+    
+    ss = HangSanhSu()
+    print("\nNhap thong tin hang sanh su:")
+    ss.inp()
+    print("\nThong tin hang sanh su:")
+    ss.out()
+    
+    tp = HangThucPham()
+    print("\nNhap thong tin hang thuc pham:")
+    tp.inp()
+    print("\nThong tin hang thuc pham:")
+    tp.out()

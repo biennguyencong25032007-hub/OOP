@@ -1,0 +1,6 @@
+[Công Nhân ] Nguyễn Văn An        | Tuổi: 30 | Nam | Bậc: 5 | Địa chỉ: Hà Nội
+[Công Nhân ] Trần Thị Bình        | Tuổi: 25 | Nữ | Bậc: 3 | Địa chỉ: TP.HCM
+[Kỹ Sư     ] Lê Hoàng Cường       | Tuổi: 35 | Nam | Ngành: Cơ khí | Địa chỉ: Đà Nẵng
+[Kỹ Sư     ] Phạm Thị Dung        | Tuổi: 28 | Nữ | Ngành: CNTT | Địa chỉ: Cần Thơ
+[Nhân Viên ] Hoàng Văn Em         | Tuổi: 40 | Nam | Công việc: Kế toán | Địa chỉ: Hải Phòng
+[Nhân Viên ] Vũ Thị Phương        | Tuổi: 32 | Nữ | Công việc: Nhân sự | Địa chỉ: Huế

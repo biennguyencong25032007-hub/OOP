@@ -1,14 +1,26 @@
-# 💻 Object-Oriented Programming (OOP) - Python
+# 🚀 Python OOP Practice
 
 ![Language](https://img.shields.io/badge/Language-Python-blue)
-![Status](https://img.shields.io/badge/Status-In--Progress-yellow)
-![Level](https://img.shields.io/badge/Level-Beginner_to_Intermediate-green)
+![Level](https://img.shields.io/badge/Level-Beginner--Intermediate-green)
+![Status](https://img.shields.io/badge/Status-Learning-orange)
 
 ---
 
-## 📘 Overview
-This repository contains Python exercises organized by weeks to practice programming and Object-Oriented Programming (OOP).
+## 📘 Introduction
+This repository contains my Python exercises while learning programming and Object-Oriented Programming (OOP).
+
+The content is organized by weeks to track my progress.
 
 ---
 
 ## 📂 Project Structure
+┣ 📂 Week4
+┃ ┣ 📜 Ex1.py
+┃ ┗ 📜 Ex2.py
+┣ 📂 Week5
+┃ ┣ 📜 Ex1.py
+┃ ┣ 📜 Ex2.py
+┃ ┗ 📜 Ex3.py
+........
+
+

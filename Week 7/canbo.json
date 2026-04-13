@@ -1,0 +1,82 @@
+[
+  {
+    "hoTen": "Nguyen Van A",
+    "tuoi": 30,
+    "gioiTinh": "Nam",
+    "diaChi": "Ha Noi",
+    "loai": "KySu",
+    "thongTin": "CNTT"
+  },
+  {
+    "hoTen": "Tran Thi B",
+    "tuoi": 25,
+    "gioiTinh": "Nu",
+    "diaChi": "TP HCM",
+    "loai": "CongNhan",
+    "thongTin": "5"
+  },
+  {
+    "hoTen": "Le Van C",
+    "tuoi": 35,
+    "gioiTinh": "Nam",
+    "diaChi": "Hai Phong",
+    "loai": "NhanVien",
+    "thongTin": "Ke toan"
+  },
+  {
+    "hoTen": "Pham Thi D",
+    "tuoi": 28,
+    "gioiTinh": "Nu",
+    "diaChi": "Da Nang",
+    "loai": "KySu",
+    "thongTin": "Dien"
+  },
+  {
+    "hoTen": "Hoang Van E",
+    "tuoi": 22,
+    "gioiTinh": "Nam",
+    "diaChi": "Binh Duong",
+    "loai": "CongNhan",
+    "thongTin": "3"
+  },
+  {
+    "hoTen": "Vo Thi F",
+    "tuoi": 32,
+    "gioiTinh": "Nu",
+    "diaChi": "Vung Tau",
+    "loai": "NhanVien",
+    "thongTin": "Han chinh"
+  },
+  {
+    "hoTen": "Nguyen Gia H",
+    "tuoi": 40,
+    "gioiTinh": "Nam",
+    "diaChi": "Hue",
+    "loai": "KySu",
+    "thongTin": "Xay dung"
+  },
+  {
+    "hoTen": "Dinh Van I",
+    "tuoi": 26,
+    "gioiTinh": "Nam",
+    "diaChi": "Nam Dinh",
+    "loai": "CongNhan",
+    "thongTin": "7"
+  },
+  {
+    "hoTen": "Tran Van K",
+    "tuoi": 38,
+    "gioiTinh": "Nam",
+    "diaChi": "Can Tho",
+    "loai": "NhanVien",
+    "thongTin": "Nhan su"
+  },
+  {
+    "hoTen": "Phan Thi L",
+    "tuoi": 29,
+    "gioiTinh": "Nu",
+    "diaChi": "Khanh Hoa",
+    "loai": "KySu",
+    "thongTin": "Co khi"
+  }
+]

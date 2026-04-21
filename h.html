@@ -1,0 +1,198 @@
+
+from weasyprint import HTML
+import os
+
+# Define the HTML content for the report
+html_content = """
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+            background-color: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20pt;
+            color: #2c3e50;
+            text-transform: uppercase;
+        }
+        .header p {
+            margin: 5px 0;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+        .info-section {
+            margin-bottom: 30px;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .info-table td {
+            padding: 5px 0;
+            font-size: 11pt;
+        }
+        h2 {
+            color: #2980b9;
+            font-size: 15pt;
+            border-left: 5px solid #2980b9;
+            padding-left: 10px;
+            margin-top: 25px;
+        }
+        h3 {
+            color: #2c3e50;
+            font-size: 13pt;
+            margin-top: 20px;
+        }
+        p, li {
+            font-size: 11pt;
+            text-align: justify;
+        }
+        table.logic-table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        table.logic-table th, table.logic-table td {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+        }
+        table.logic-table th {
+            background-color: #ecf0f1;
+            font-weight: bold;
+        }
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14pt;
+            margin: 20px 0;
+            border: 1px dashed #2980b9;
+        }
+        .instruction-box {
+            background-color: #fdfaf0;
+            border-left: 5px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 50px;
+            font-style: italic;
+            text-align: right;
+            font-size: 10pt;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p>ĐẠI HỌC VIỆT NHẬT (VJU)</p>
+        <h1>BÁO CÁO THIẾT KẾ HỆ THỐNG LOGIC</h1>
+    </div>
+
+    <div class="info-section">
+        <table class="info-table">
+            <tr>
+                <td style="width: 20%;"><strong>Sinh viên thực hiện:</strong></td>
+                <td>Nguyễn Công Biên</td>
+            </tr>
+            <tr>
+                <td><strong>Học phần:</strong></td>
+                <td>Nhập môn công nghệ số và ứng dụng trí tuệ nhân tạo</td>
+            </tr>
+            <tr>
+                <td><strong>Đề tài:</strong></td>
+                <td>Hệ thống cảnh báo an toàn máy dập công nghiệp</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>1. Mô tả bài toán</h2>
+    <p>Thiết kế mạch điều khiển cho một máy dập công nghiệp. Máy chỉ được phép hoạt động (đầu ra F = 1) khi thỏa mãn các điều kiện an toàn sau:</p>
+    <ul>
+        <li>Phải nhấn đồng thời hai nút bấm khởi động (đảm bảo hai tay người thợ đều rời xa vùng nguy hiểm).</li>
+        <li>Tấm chắn bảo vệ đã được đóng lại.</li>
+    </ul>
+
+    <h2>2. Xác định các biến đầu vào và đầu ra</h2>
+    <h3>2.1. Biến đầu vào</h3>
+    <ul>
+        <li><strong>A:</strong> Trạng thái nút bấm khởi động thứ nhất (1: Nhấn, 0: Thả).</li>
+        <li><strong>B:</strong> Trạng thái nút bấm khởi động thứ hai (1: Nhấn, 0: Thả).</li>
+        <li><strong>C:</strong> Trạng thái tấm chắn bảo vệ (1: Đóng, 0: Mở).</li>
+    </ul>
+    <h3>2.2. Biến đầu ra</h3>
+    <ul>
+        <li><strong>F:</strong> Lệnh điều khiển máy dập (1: Hoạt động, 0: Dừng).</li>
+    </ul>
+
+    <h2>3. Lập bảng chân trị</h2>
+    <table class="logic-table">
+        <thead>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>F (Đầu ra)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>0</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>0</td><td>0</td><td>1</td><td><strong>0</strong></td></tr>
+            <tr><td>0</td><td>1</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>0</td><td>1</td><td>1</td><td><strong>0</strong></td></tr>
+            <tr><td>1</td><td>0</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>1</td><td>0</td><td>1</td><td><strong>0</strong></td></tr>
+            <tr><td>1</td><td>1</td><td>0</td><td><strong>0</strong></td></tr>
+            <tr><td>1</td><td>1</td><td>1</td><td><strong>1</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h2>4. Phương trình logic và Sơ đồ cổng</h2>
+    <p>Dựa trên bảng chân trị, đầu ra F chỉ bằng 1 khi cả ba biến A, B, và C đồng thời bằng 1. Do đó, hàm logic của hệ thống là hàm AND 3 ngõ vào:</p>
+    <div class="formula">
+        F = A . B . C
+    </div>
+
+    <h2>5. Hướng dẫn thực hiện trên Multisim</h2>
+    <div class="instruction-box">
+        <strong>Các bước lắp mạch:</strong>
+        <ol>
+            <li><strong>Lấy linh kiện:</strong> Sử dụng 03 nguồn <i>Interactive Digital Constant</i> (nhóm Digital_Sources) tượng trưng cho A, B, C.</li>
+            <li><strong>Cổng Logic:</strong> Lấy 01 cổng <i>AND3</i> (nhóm Misc Digital -> TIL) hoặc IC <i>74LS11</i>.</li>
+            <li><strong>Đầu ra:</strong> Lấy 01 bóng đèn <i>Probe</i> (nhóm Indicators).</li>
+            <li><strong>Kết nối:</strong> Nối 3 nguồn đầu vào vào 3 chân của cổng AND, đầu ra cổng AND nối vào bóng đèn.</li>
+            <li><strong>Mô phỏng:</strong> Chạy mô phỏng và kiểm tra logic (Đèn chỉ sáng khi cả 3 đầu vào ở mức 1).</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        Ngày tạo: 22 tháng 04 năm 2026
+    </div>
+</body>
+</html>
+"""
+
+# Save to PDF
+output_path = "bao_cao_thiet_ke_logic_may_dap.pdf"
+HTML(string=html_content).write_pdf(output_path)
